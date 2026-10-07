@@ -14,9 +14,9 @@
       var stars = (s.islands[isl.id] || {}).stars || 0;
       var name = t("islands." + isl.id);
       html += '<button class="island hue-' + isl.hue + (unlocked && ready ? "" : " locked") + '" data-id="' + isl.id + '" style="animation-delay:' + (ISLANDS.indexOf(isl) * -0.7) + 's"' +
-        ' aria-label="' + UI.esc(name + ". " + t("common.grades", { g: isl.grades })) + '">' +
+        ' aria-label="' + UI.esc(name) + '">' +
         '<span class="ic" aria-hidden="true">' + (unlocked ? isl.icon : "🔒") + '</span><span class="nm">' + UI.esc(name) + "</span>" +
-        '<span class="gr">' + UI.esc(t("common.grades", { g: isl.grades })) + '</span><span class="st" aria-hidden="true">' + "★★★".slice(0, stars) + "</span></button>";
+        '<span class="st" aria-hidden="true">' + "★★★".slice(0, stars) + "</span></button>";
     });
     el.innerHTML = html;
     el.querySelectorAll(".island").forEach(function (b) {
