@@ -1,7 +1,5 @@
-// Подключение к базе Supabase.
-// Вставьте сюда данные своего проекта: Supabase → Project Settings → API
-//   url — Project URL, key — publishable (anon) key.
+// Подключение к базе Supabase (Project Settings → API).
 window.MATH_ISLANDS_DB = {
-  url: "https://anejcbbslncnclxlqjxf.supabase.co",
-  key: "sb_publishable_r7uPZ6h1eq8sySzGwY_acw_uhpWIlpg"
+  url: "https://duvwargqavxtcmxoyvtb.supabase.co",
+  key: "sb_publishable_rejj3trybmJy24lhT9MZIg_fqRuGV5C"
 };
