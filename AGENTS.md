@@ -10,5 +10,5 @@
 <!-- LOVABLE:END -->
 
 - Math Islands lives as a plain HTML/CSS/JS static site in public/app/ (no frameworks, classic scripts) so it opens offline by double-clicking index.html; "/" just redirects there.
-- AI explanations go through the public server route /api/public/explain (input length-capped, math-only prompt) because the static app has no login and cannot use server functions; the rest of the app stays offline-capable.
 - Installability is manifest-only (public/app/manifest.webmanifest); this template forbids adding PWA/service-worker build config.
+- "Ask Fox" is a rule-based, offline explainer (public/app/js/explainer.js) with no AI or network calls; question history is kept in localStorage.
