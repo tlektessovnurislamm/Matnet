@@ -190,9 +190,7 @@ table { width: 100%; border-collapse: collapse; } th, td { text-align: left; pad
 @keyframes spin-in { from { transform: rotate(-360deg) scale(0); } }
 
 @media (max-width: 720px) {
-  .map { aspect-ratio: auto; display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; padding: 1rem; }
-  .map svg.route { display: none; }
-  .island { position: static; transform: none !important; width: auto; min-width: 0; animation: none; }
+  .map { grid-template-columns: 1fr 1fr; gap: 1.2rem; padding: 1.2rem; }
   .grid2 { grid-template-columns: 1fr; }
   .fox { width: 84px; height: 84px; }
   .pizza { width: 200px; height: 200px; } .pizza-sm { width: 96px; height: 96px; }
