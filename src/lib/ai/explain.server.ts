@@ -24,7 +24,7 @@ export async function handleExplain(request: Request): Promise<Response> {
   const answer = String(body.answer ?? "").trim().slice(0, 200);
   if (question.length < 2) return json({ error: "empty" }, 400);
 
-  const apiKey = process.env.LOVABLE_API_KEY;
+  const apiKey = process.env["LOVABLE_API_KEY"];
   if (!apiKey) return json({ error: "config" }, 500);
 
   const runIdFetch = createLovableAiGatewayRunIdFetch(getLovableAiGatewayRunId(request));
