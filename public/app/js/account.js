@@ -1,4 +1,4 @@
-/* account.js — student profiles (full name + grade + password) stored in Lovable Cloud.
+/* account.js — student profiles (full name + grade + password) stored in the cloud.
  * Talks to the cloud with plain fetch (no libraries). The login is derived from the
  * normalized full name + grade, so a child only types what they know.
  * Progress is pulled on sign-in and pushed (debounced) on every Store.save(). */
