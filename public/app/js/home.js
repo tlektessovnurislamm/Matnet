@@ -8,13 +8,12 @@
 
   function renderMap() {
     var s = Store.get(), el = document.getElementById("map");
-    var pts = ISLANDS.map(function (i) { return i.pos.x + " " + (i.pos.y * 0.625); }).join(" L");
-    var html = '<svg class="route" viewBox="0 0 100 62.5" preserveAspectRatio="none" aria-hidden="true"><path d="M' + pts + '"/></svg>';
+    var html = "";
     ISLANDS.forEach(function (isl) {
       var unlocked = s.unlocked.indexOf(isl.id) >= 0, ready = !!isl.script;
       var stars = (s.islands[isl.id] || {}).stars || 0;
       var name = t("islands." + isl.id);
-      html += '<button class="island hue-' + isl.hue + (unlocked && ready ? "" : " locked") + '" data-id="' + isl.id + '" style="left:' + isl.pos.x + "%;top:" + isl.pos.y + '%"' +
+      html += '<button class="island hue-' + isl.hue + (unlocked && ready ? "" : " locked") + '" data-id="' + isl.id + '" style="animation-delay:' + (ISLANDS.indexOf(isl) * -0.7) + 's"' +
         ' aria-label="' + UI.esc(name + ". " + t("common.grades", { g: isl.grades })) + '">' +
         '<span class="ic" aria-hidden="true">' + (unlocked ? isl.icon : "🔒") + '</span><span class="nm">' + UI.esc(name) + "</span>" +
         '<span class="gr">' + UI.esc(t("common.grades", { g: isl.grades })) + '</span><span class="st" aria-hidden="true">' + "★★★".slice(0, stars) + "</span></button>";

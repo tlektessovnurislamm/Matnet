@@ -17,12 +17,23 @@ var TaskGen = (function () {
   function lcm(a, b) { return a / gcd(a, b) * b; }
   function simp(n, d) { var g = gcd(n, d) || 1; return [n / g, d / g]; }
   function frac(n, d) { return d === 1 ? String(n) : n + "/" + d; }
-  function val(s) { s = String(s); if (s.indexOf("/") < 0) return Number(s); var p = s.split("/"); return Number(p[0]) / Number(p[1]); }
+  /* Values: integers, "n/d", decimals with comma "2,35" (or dot), optional trailing "%". */
+  function val(s) { s = String(s).replace(/%$/, "").replace(",", "."); if (s.indexOf("/") < 0) return Number(s); var p = s.split("/"); return Number(p[0]) / Number(p[1]); }
   function valid(s) {
-    s = String(s);
-    if (s.indexOf("/") < 0) return /^\d+$/.test(s);
+    s = String(s).replace(/%$/, "");
+    if (s.indexOf("/") < 0) return /^\d+([.,]\d+)?$/.test(s);
     var p = s.split("/");
     return /^\d+$/.test(p[0]) && /^\d+$/.test(p[1]) && Number(p[1]) > 0 && Number(p[0]) > 0;
+  }
+  /* Decimal helpers: work in integer "units of 1/scale" to avoid float errors. dec(235,100) → "2,35" */
+  function dec(units, scale, minPlaces) {
+    scale = scale || 100;
+    var places = String(scale).length - 1, neg = units < 0; units = Math.abs(units);
+    var ip = Math.floor(units / scale), fp = String(units % scale);
+    while (fp.length < places) fp = "0" + fp;
+    var keep = minPlaces || 0;
+    while (fp.length > keep && fp.charAt(fp.length - 1) === "0") fp = fp.slice(0, -1);
+    return (neg ? "-" : "") + ip + (fp.length ? "," + fp : "");
   }
   function near(a, b) { return Math.abs(a - b) < 1e-9; }
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
@@ -70,5 +81,5 @@ var TaskGen = (function () {
   function register(islandId, named) { registry[islandId] = named; }
 
   return { rnd: rnd, pick: pick, gcd: gcd, lcm: lcm, simp: simp, frac: frac, val: val, near: near,
-           shuffle: shuffle, makeOptions: makeOptions, selfTest: selfTest, register: register, registry: registry };
+           shuffle: shuffle, dec: dec, makeOptions: makeOptions, selfTest: selfTest, register: register, registry: registry };
 })();
