@@ -11,16 +11,24 @@
   <link rel="apple-touch-icon" href="icons/icon-180.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
-<body>
+<body data-i18n-title="ask.title">
   <header id="topbar"></header>
   <main>
     <section class="hero mini-hero">
       <div id="fox"></div>
-      <p class="bubble" id="bubble" aria-live="polite"></p>
+      <p class="bubble" id="bubble" aria-live="polite" data-i18n="ask.intro"></p>
     </section>
-    <h1 id="isl-title"></h1>
-    <div class="tabs" role="tablist" id="tabs"></div>
-    <section id="panel" role="tabpanel"></section>
+    <h1 data-i18n="ask.title"></h1>
+    <form class="card ask-form" id="ask-form">
+      <label for="q" data-i18n="ask.question"></label>
+      <textarea id="q" maxlength="400" rows="3" data-i18n-ph="ask.questionPh"></textarea>
+      <label for="a" data-i18n="ask.answer"></label>
+      <input id="a" maxlength="200" data-i18n-ph="ask.answerPh">
+      <p class="muted" data-i18n="ask.privacy"></p>
+      <button class="btn btn-primary" type="submit" id="send" data-i18n="ask.send"></button>
+    </form>
+    <section class="card ask-result" id="result" aria-live="polite" hidden></section>
+    <p><a class="btn btn-soft" href="index.html" data-i18n="common.toMap"></a></p>
   </main>
   <script src="js/storage.js"></script>
   <script src="js/i18n.js"></script>
@@ -29,7 +37,6 @@
   <script src="js/progress.js"></script>
   <script src="js/taskGenerator.js"></script>
   <script src="js/ui.js"></script>
-  <script src="js/game.js"></script>
-  <script src="js/islandPage.js"></script>
+  <script src="js/ask.js"></script>
 </body>
 </html>

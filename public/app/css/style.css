@@ -156,3 +156,28 @@ table { width: 100%; border-collapse: collapse; } th, td { text-align: left; pad
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Ask Fox */
+.ask-form { display: grid; gap: .5rem; }
+.ask-form label { font-weight: 800; }
+.ask-form textarea, .ask-form input { font: inherit; font-size: 1.1rem; padding: .8rem; border-radius: 16px; border: 3px solid var(--line); background: var(--sand); color: var(--ink); min-height: 52px; }
+.ask-result { margin-top: 1rem; }
+.explain p { font-size: 1.15rem; font-weight: 700; margin: .4rem 0; }
+.thinking { font-weight: 800; color: var(--primary); animation: bob 1.2s ease-in-out infinite; }
+.link-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+
+/* Printable report */
+.report-sum { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; margin-bottom: 1rem; }
+.sum-box { background: var(--sand); border-radius: 16px; padding: .6rem .8rem; }
+.sum-box small { display: block; color: var(--ink-soft); font-weight: 700; }
+.sum-box b { font-size: 1.3rem; }
+.print-only { display: none; }
+@media (max-width: 720px) { .report-sum { grid-template-columns: 1fr 1fr; } }
+@media print {
+  #topbar, .no-print, .hero { display: none !important; }
+  .print-only { display: block; }
+  body { background: #fff; }
+  .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+  .grid2 { grid-template-columns: 1fr; }
+  .report-sum { grid-template-columns: repeat(4, 1fr); }
+}
