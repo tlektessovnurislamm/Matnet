@@ -224,9 +224,9 @@ table { width: 100%; border-collapse: collapse; } th, td { text-align: left; pad
 .auth-card form { display: grid; gap: 14px; margin-top: 14px; }
 .auth-card label { display: grid; gap: 6px; font-weight: 600; }
 .auth-card input, .auth-card select { font: inherit; padding: 12px 14px; border-radius: 12px; border: 2px solid var(--line, #cbd5e1); background: var(--card, #fff); color: inherit; }
-.auth-card input:focus, .auth-card select:focus { outline: 3px solid var(--accent, #1f7a8c); outline-offset: 1px; }
+.auth-card input:focus, .auth-card select:focus { outline: 3px solid var(--primary); outline-offset: 1px; }
 .auth-card small { font-weight: 400; opacity: .7; }
-.auth-err { color: var(--bad, #c0392b); min-height: 1.2em; margin: 0; font-weight: 600; }
+.auth-err { color: var(--fox-dark); min-height: 1.2em; margin: 0; font-weight: 600; }
 .auth-note { margin: 0; font-size: .9em; opacity: .75; text-align: center; }
 .student-chip { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @media print { #logout, .student-chip { display: none; } }
