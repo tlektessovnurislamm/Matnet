@@ -28,6 +28,11 @@
       <button class="btn btn-primary" type="submit" id="send" data-i18n="ask.send"></button>
     </form>
     <section class="card ask-result" id="result" aria-live="polite" hidden></section>
+    <section class="card ask-history">
+      <h2 data-i18n="ask.historyTitle"></h2>
+      <div id="history"></div>
+      <button class="btn btn-soft" type="button" id="clear" data-i18n="ask.clear" hidden></button>
+    </section>
     <p><a class="btn btn-soft" href="index.html" data-i18n="common.toMap"></a></p>
   </main>
   <script src="js/storage.js"></script>
@@ -37,6 +42,7 @@
   <script src="js/progress.js"></script>
   <script src="js/taskGenerator.js"></script>
   <script src="js/ui.js"></script>
+  <script src="js/explainer.js"></script>
   <script src="js/ask.js"></script>
 </body>
 </html>

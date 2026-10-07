@@ -14,7 +14,8 @@ var Store = (function () {
       medals: [],
       streak: { count: 0, last: null }, // daily streak, last = "YYYY-MM-DD"
       settings: { sound: true, fontScale: 1 },
-      avatar: { owned: [], worn: [] }
+      avatar: { owned: [], worn: [] },
+      askHistory: []                    // "Ask Fox": [{q, a, steps:[{k,p}], time}]
     };
   }
 

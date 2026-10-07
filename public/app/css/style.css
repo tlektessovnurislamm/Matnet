@@ -181,3 +181,9 @@ table { width: 100%; border-collapse: collapse; } th, td { text-align: left; pad
   .grid2 { grid-template-columns: 1fr; }
   .report-sum { grid-template-columns: repeat(4, 1fr); }
 }
+.examples { display: flex; flex-wrap: wrap; gap: .5rem; margin: .6rem 0; }
+.answer-line { font-size: 1.3rem !important; color: var(--ok); }
+.effort { font-weight: 800; color: var(--primary); }
+.ask-history { margin-top: 1rem; }
+.hist { list-style: none; padding: 0; display: grid; gap: .4rem; }
+.hist-item { width: 100%; text-align: left; min-height: 52px; padding: .5rem 1rem; border-radius: 16px; border: 2px solid var(--line); background: var(--sand); font: inherit; font-weight: 700; color: var(--ink); cursor: pointer; }
