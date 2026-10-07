@@ -36,11 +36,27 @@ var Store = (function () {
 
   function save() {
     try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* private mode: ignore */ }
+    if (typeof window.onStoreSave === "function") window.onStoreSave(state);
+  }
+  /* Progress fields only (no lang/settings) — what gets synced to the student's cloud profile. */
+  function progressPart() {
+    var out = {}, d = defaults();
+    for (var k in d) if (k !== "lang" && k !== "settings") out[k] = state[k];
+    return out;
+  }
+  function setProgress(obj) {
+    var keep = { lang: state.lang, settings: state.settings };
+    state = defaults();
+    if (obj && typeof obj === "object") for (var k in state) if (obj[k] !== undefined) state[k] = obj[k];
+    state.lang = keep.lang; state.settings = keep.settings;
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
   }
 
   return {
     get: function () { return state; },
     save: save,
+    progressPart: progressPart,
+    setProgress: setProgress,
     /* Reset learning progress but keep language and accessibility settings. */
     reset: function () {
       var keep = { lang: state.lang, settings: state.settings };
