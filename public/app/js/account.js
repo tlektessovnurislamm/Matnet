@@ -41,14 +41,16 @@ var Account = (function () {
       .then(function (r) { if (!r.ok) { setSession(null); throw new Error("expired"); } keep(r.data); return getSession(); });
   }
 
+  var saves = 0;
   function pull() {
+    var at = saves;
     return fresh().then(function (s) {
       return api("/rest/v1/students?id=eq." + s.user_id + "&select=full_name,grade,progress", { auth: true });
     }).then(function (r) {
       var row = r.ok && r.data && r.data[0];
       if (!row) throw new Error("noprofile");
       var s = getSession(); s.full_name = row.full_name; s.grade = row.grade; setSession(s);
-      Store.setProgress(row.progress || {});
+      if (saves === at) Store.setProgress(row.progress || {}); // never clobber changes made meanwhile
       return row;
     });
   }
@@ -62,7 +64,7 @@ var Account = (function () {
   }
   window.onStoreSave = function () {
     if (!getSession()) return;
-    pending = true;
+    saves++; pending = true;
     clearTimeout(timer); timer = setTimeout(push, 800);
   };
   window.addEventListener("pagehide", function () { if (pending) push(); });
