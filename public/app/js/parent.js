@@ -32,6 +32,7 @@
   function done() {
     var runs = 0, fails = [];
     Object.keys(TaskGen.registry).forEach(function (k) { var r = TaskGen.selfTest(TaskGen.registry[k], 300); runs += r.runs; fails = fails.concat(r.failures.map(function (f) { return k + "." + f; })); });
+    var ex = Explainer.selfTest(); runs += 9; fails = fails.concat(ex.map(function (q) { return "ask: " + q; }));
     check = { runs: runs, failures: fails }; render();
   }
   scripts.forEach(function (i) { var sc = document.createElement("script"); sc.src = i.script; sc.onload = sc.onerror = function () { if (--left === 0) done(); }; document.body.appendChild(sc); });
