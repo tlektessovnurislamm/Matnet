@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Math Islands</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-i18n-title="common.home">
+  <header id="topbar"></header>
+  <main>
+    <section class="hero">
+      <div id="fox-home"></div>
+      <p class="bubble" id="bubble" aria-live="polite"></p>
+    </section>
+    <h1 data-i18n="common.mapTitle"></h1>
+    <div class="map" id="map"></div>
+    <p class="toast" id="toast" aria-live="polite"></p>
+    <div class="grid2">
+      <section class="card">
+        <h2 data-i18n="shop.title"></h2>
+        <p class="muted" data-i18n="shop.hint"></p>
+        <div class="shop-items" id="shop"></div>
+      </section>
+      <section class="card">
+        <h2 data-i18n="common.medalsTitle"></h2>
+        <div class="medals" id="medals"></div>
+        <p style="margin-top:1rem"><a class="btn btn-soft" href="parent.html" data-i18n="common.parentLink"></a></p>
+      </section>
+    </div>
+  </main>
+  <script src="js/storage.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="islands/config.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/taskGenerator.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
