@@ -231,12 +231,10 @@ table { width: 100%; border-collapse: collapse; } th, td { text-align: left; pad
 .hist { list-style: none; padding: 0; display: grid; gap: .4rem; }
 .hist-item { width: 100%; text-align: left; min-height: 52px; padding: .5rem 1rem; border-radius: 16px; border: 2px solid var(--line); background: var(--sand); font: inherit; font-weight: 700; color: var(--ink); cursor: pointer; }
 
-/* Map as a responsive archipelago grid (15 islands) */
-.map { aspect-ratio: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.1rem; padding: 1.4rem; }
-.island { position: static; transform: none; width: auto; min-width: 0; }
-.island:hover { transform: scale(1.05); }
-@keyframes float { 50% { transform: translateY(-6px); } }
-@media (max-width: 720px) { .map { grid-template-columns: 1fr 1fr; } }
+@keyframes sea-drift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 128px 0, 128px 0; }
+}
 
 /* Shared island visuals: strip, number line, place table, 100-grid, price tag */
 .strip { display: flex; gap: 3px; width: min(100%, 460px); margin: 0 auto; }
