@@ -3,8 +3,9 @@
  * normalized full name + grade, so a child only types what they know.
  * Progress is pulled on sign-in and pushed (debounced) on every Store.save(). */
 var Account = (function () {
-  var URL_ = "https://anejcbbslncnclxlqjxf.supabase.co";
-  var KEY_ = "sb_publishable_r7uPZ6h1eq8sySzGwY_acw_uhpWIlpg";
+  var CFG = window.MATH_ISLANDS_DB || {};
+  var URL_ = (CFG.url || "https://anejcbbslncnclxlqjxf.supabase.co").replace(/\/$/, "");
+  var KEY_ = CFG.key || "sb_publishable_r7uPZ6h1eq8sySzGwY_acw_uhpWIlpg";
   var SKEY = "mathIslands.session";
 
   function getSession() { try { return JSON.parse(localStorage.getItem(SKEY)); } catch (e) { return null; } }
