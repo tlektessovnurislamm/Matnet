@@ -42,6 +42,11 @@ var Account = (function () {
   }
 
   var saves = 0;
+  function stable(v) {
+    if (Array.isArray(v)) return "[" + v.map(stable).join(",") + "]";
+    if (v && typeof v === "object") return "{" + Object.keys(v).sort().map(function (k) { return JSON.stringify(k) + ":" + stable(v[k]); }).join(",") + "}";
+    return JSON.stringify(v === undefined ? null : v);
+  }
   function pull() {
     var at = saves;
     return fresh().then(function (s) {
@@ -51,7 +56,7 @@ var Account = (function () {
       if (!row) throw new Error("noprofile");
       var s = getSession(); s.full_name = row.full_name; s.grade = row.grade; setSession(s);
       // never clobber changes made meanwhile; report whether the cloud copy differed
-      row.changed = saves === at && JSON.stringify(row.progress || {}) !== JSON.stringify(Store.progressPart());
+      row.changed = saves === at && stable(row.progress || {}) !== stable(Store.progressPart());
       if (row.changed) Store.setProgress(row.progress || {});
       return row;
     });
