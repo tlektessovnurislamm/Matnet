@@ -21,7 +21,7 @@ var TaskGen = (function () {
   function val(s) { s = String(s).replace(/%$/, "").replace(",", "."); if (s.indexOf("/") < 0) return Number(s); var p = s.split("/"); return Number(p[0]) / Number(p[1]); }
   function valid(s) {
     s = String(s).replace(/%$/, "");
-    if (s.indexOf("/") < 0) return /^\d+([.,]\d+)?$/.test(s);
+    if (s.indexOf("/") < 0) return /^-?\d+([.,]\d+)?$/.test(s);
     var p = s.split("/");
     return /^\d+$/.test(p[0]) && /^\d+$/.test(p[1]) && Number(p[1]) > 0 && Number(p[0]) > 0;
   }
