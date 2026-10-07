@@ -65,7 +65,6 @@ h1, h2, h3 { line-height: 1.2; margin: .4em 0; }
 .island:hover { transform: translate(-50%, -50%) scale(1.05); }
 .island .ic { font-size: 1.8rem; font-weight: 900; }
 .island .nm { font-weight: 800; font-size: .8rem; line-height: 1.15; }
-.island .gr { font-size: .72rem; color: var(--ink-soft); }
 .island .st { color: var(--try); letter-spacing: 2px; }
 .island.locked { filter: grayscale(.8); opacity: .75; }
 .hue-coral { background: var(--coral); } .hue-leaf { background: var(--leaf); } .hue-sun { background: var(--sun); } .hue-sky { background: var(--sky); } .hue-berry { background: var(--berry); }
