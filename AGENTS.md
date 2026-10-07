@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Math Islands lives as a plain HTML/CSS/JS static site in public/app/ (no frameworks, classic scripts) so it opens offline by double-clicking index.html; "/" just redirects there.
