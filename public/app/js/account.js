@@ -50,7 +50,9 @@ var Account = (function () {
       var row = r.ok && r.data && r.data[0];
       if (!row) throw new Error("noprofile");
       var s = getSession(); s.full_name = row.full_name; s.grade = row.grade; setSession(s);
-      if (saves === at) Store.setProgress(row.progress || {}); // never clobber changes made meanwhile
+      // never clobber changes made meanwhile; report whether the cloud copy differed
+      row.changed = saves === at && JSON.stringify(row.progress || {}) !== JSON.stringify(Store.progressPart());
+      if (row.changed) Store.setProgress(row.progress || {});
       return row;
     });
   }
@@ -105,8 +107,7 @@ var Account = (function () {
   if (!isLogin && !getSession()) location.replace("login.html");
   if (!isLogin && getSession()) {
     // Refresh from the cloud in the background (another device may have newer progress).
-    var before = JSON.stringify(Store.progressPart());
-    pull().then(function () { if (JSON.stringify(Store.progressPart()) !== before) location.reload(); }).catch(function (e) {
+    pull().then(function (row) { if (row.changed) location.reload(); }).catch(function (e) {
       if (e && (e.message === "expired" || e.message === "noprofile")) { setSession(null); location.replace("login.html"); }
     });
   }
