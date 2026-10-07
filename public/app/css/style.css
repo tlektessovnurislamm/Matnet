@@ -112,7 +112,7 @@ h1, h2, h3 { line-height: 1.2; margin: .4em 0; }
 .island .ic { font-size: 1.9rem; font-weight: 900; }
 .island .nm { font-weight: 800; font-size: .8rem; line-height: 1.15; }
 .island .st { color: #ffd34d; letter-spacing: 2px; text-shadow: 0 1px 0 rgba(60,90,30,.5); }
-.island.locked { filter: grayscale(.85) brightness(.9); opacity: .8; }
+.island.locked { filter: saturate(.35) brightness(.92); opacity: .85; }
 .hue-coral { --flower: #f08a5d; } .hue-leaf { --flower: #ffd34d; } .hue-sun { --flower: #ff8fb0; } .hue-sky { --flower: #ffe27a; } .hue-berry { --flower: #e6a1c3; }
 .toast { margin-top: .8rem; min-height: 1.5em; font-weight: 700; }
 
