@@ -24,6 +24,7 @@ var UI = (function () {
         (s.streak.count > 1 ? '<span class="pill pill-hot">' + esc(t("common.streak", { n: s.streak.count })) + "</span>" : "") +
       "</div>" +
       '<div class="tools">' +
+        (window.Account && Account.session() ? '<span class="pill student-chip" title="' + esc(t("account.grade")) + '">' + esc(Account.session().full_name || "") + (Account.session().grade ? " · " + Account.session().grade : "") + '</span><button class="icon-btn" id="logout" aria-label="' + esc(t("account.logout")) + '" title="' + esc(t("account.logout")) + '">⎋</button>' : "") +
         '<button class="icon-btn" id="fs-minus" aria-label="' + esc(t("common.fontSmaller")) + '">A−</button>' +
         '<button class="icon-btn" id="fs-plus" aria-label="' + esc(t("common.fontBigger")) + '">A+</button>' +
         '<button class="icon-btn" id="snd" aria-pressed="' + s.settings.sound + '" aria-label="' + esc(t(s.settings.sound ? "common.soundOn" : "common.soundOff")) + '">' + (s.settings.sound ? "♪" : "×♪") + "</button>" +
@@ -32,6 +33,7 @@ var UI = (function () {
           '<button data-lang="ru" aria-pressed="' + (getLang() === "ru") + '">RU</button>' +
         "</div>" +
       "</div>";
+    var lo = el.querySelector("#logout"); if (lo) lo.onclick = function () { Account.logout(); };
     el.querySelector("#fs-minus").onclick = function () { changeFont(-0.1); };
     el.querySelector("#fs-plus").onclick = function () { changeFont(0.1); };
     el.querySelector("#snd").onclick = function () { s.settings.sound = !s.settings.sound; Store.save(); renderTopbar(); };

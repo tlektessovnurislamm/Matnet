@@ -103,7 +103,8 @@ var Account = (function () {
   if (!isLogin && !getSession()) location.replace("login.html");
   if (!isLogin && getSession()) {
     // Refresh from the cloud in the background (another device may have newer progress).
-    pull().then(function () { if (window.UI && UI.renderTopbar) { UI.renderTopbar(); } }).catch(function (e) {
+    var before = JSON.stringify(Store.progressPart());
+    pull().then(function () { if (JSON.stringify(Store.progressPart()) !== before) location.reload(); }).catch(function (e) {
       if (e && (e.message === "expired" || e.message === "noprofile")) { setSession(null); location.replace("login.html"); }
     });
   }
