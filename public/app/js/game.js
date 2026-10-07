@@ -54,6 +54,7 @@ var Game = (function () {
       html += '<div class="feedback" aria-live="polite">';
       if (s.msg) html += '<p class="fb fb-' + s.msg.type + '">' + UI.esc(s.msg.text) + (s.msg.extra ? "<br><b>" + UI.esc(t(s.msg.extra)) + "</b>" : "") + "</p>";
       html += "</div>";
+      if (s.done && s.tries > 0) html += '<a class="btn btn-soft" href="ask.html?q=' + encodeURIComponent(promptText) + "&a=" + encodeURIComponent(s.wrong[0]) + '">🦊 ' + UI.esc(t("ask.explainMistake")) + "</a>";
       if (s.done) html += '<button class="btn btn-primary btn-next">' + UI.esc(t("common.next")) + " →</button>";
       html += "</div>";
       root.innerHTML = html;

@@ -6,6 +6,10 @@
   function render() {
     var s = Store.get();
     document.getElementById("totals").textContent = t("parent.totals", { p: s.points, m: s.medals.length, s: s.streak.count });
+    document.getElementById("report-date").textContent = t("report.date", { d: new Date().toLocaleDateString(getLang() === "kz" ? "kk-KZ" : "ru-RU") });
+    var medalNames = s.medals.length ? s.medals.map(function (m) { return t("medals." + m); }).join(", ") : t("report.none");
+    document.getElementById("report-sum").innerHTML = [["report.points", s.points], ["report.stars", Progress.totalStars()], ["report.streak", s.streak.count], ["report.medals", medalNames]]
+      .map(function (x) { return '<div class="sum-box"><small>' + UI.esc(t(x[0])) + "</small><b>" + UI.esc(x[1]) + "</b></div>"; }).join("");
     var rows = ISLANDS.map(function (isl) {
       var r = s.islands[isl.id];
       var name = UI.esc(t("islands." + isl.id));
@@ -37,6 +41,7 @@
     Store.reset(); UI.renderTopbar(); render();
     document.getElementById("reset-msg").textContent = t("parent.resetDone");
   };
+  document.getElementById("print").onclick = function () { window.print(); };
   document.addEventListener("langchange", render);
   render();
 })();
