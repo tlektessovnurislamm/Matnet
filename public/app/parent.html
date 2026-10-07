@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Math Islands</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-i18n-title="parent.title">
+  <header id="topbar"></header>
+  <main>
+    <h1 data-i18n="parent.title"></h1>
+    <p class="muted" data-i18n="parent.intro"></p>
+    <section class="card"><p id="totals"></p><div class="table-wrap" id="table"></div></section>
+    <div class="grid2">
+      <section class="card"><h2 data-i18n="parent.hardTitle"></h2><ul id="hard"></ul></section>
+      <section class="card"><h2 data-i18n="parent.checkTitle"></h2><p id="check"></p>
+        <button class="btn btn-accent" id="reset" data-i18n="parent.reset"></button><p id="reset-msg" aria-live="polite"></p></section>
+    </div>
+  </main>
+  <script src="js/storage.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="islands/config.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/taskGenerator.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/parent.js"></script>
+</body>
+</html>
