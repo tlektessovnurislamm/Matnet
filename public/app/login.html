@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Math Islands</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1f7a8c">
+  <link rel="icon" type="image/png" href="icons/icon-64.png">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+</head>
+<body data-i18n-title="account.pageTitle">
+  <header id="topbar"></header>
+  <main class="auth-wrap">
+    <section class="hero mini-hero">
+      <div id="fox"></div>
+      <p class="bubble" data-i18n="account.welcome"></p>
+    </section>
+    <div class="card auth-card">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="tab-login" aria-selected="true" data-i18n="account.loginTab"></button>
+        <button class="tab" role="tab" id="tab-reg" aria-selected="false" data-i18n="account.registerTab"></button>
+      </div>
+      <form id="auth-form" novalidate>
+        <label><span data-i18n="account.fullName"></span>
+          <input id="f-name" autocomplete="name" maxlength="120" required>
+        </label>
+        <label><span data-i18n="account.grade"></span>
+          <select id="f-grade"><option>4</option><option>5</option><option>6</option><option>7</option></select>
+        </label>
+        <label><span data-i18n="account.password"></span>
+          <input id="f-pass" type="password" minlength="6" maxlength="72" autocomplete="current-password" required>
+          <small data-i18n="account.passwordHint"></small>
+        </label>
+        <p class="auth-err" id="f-err" role="alert"></p>
+        <button class="btn btn-primary" id="f-submit" type="submit"></button>
+        <p class="auth-note" data-i18n="account.note"></p>
+      </form>
+    </div>
+  </main>
+  <script src="js/storage.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/account.js"></script>
+  <script src="islands/config.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+  (function () {
+    if (Account.session()) { location.replace("index.html"); return; }
+    var mode = "login";
+    UI.init();
+    document.getElementById("fox").innerHTML = UI.foxSVG([]);
+    var $ = function (id) { return document.getElementById(id); };
+    function paint() {
+      $("tab-login").setAttribute("aria-selected", mode === "login");
+      $("tab-reg").setAttribute("aria-selected", mode === "reg");
+      $("f-submit").textContent = t(mode === "login" ? "account.loginBtn" : "account.registerBtn");
+      $("f-name").placeholder = t("account.fullNamePh");
+      $("f-pass").autocomplete = mode === "login" ? "current-password" : "new-password";
+    }
+    $("tab-login").onclick = function () { mode = "login"; $("f-err").textContent = ""; paint(); };
+    $("tab-reg").onclick = function () { mode = "reg"; $("f-err").textContent = ""; paint(); };
+    document.addEventListener("langchange", paint);
+    paint();
+    $("auth-form").onsubmit = function (e) {
+      e.preventDefault();
+      var name = $("f-name").value.trim(), grade = +$("f-grade").value, pass = $("f-pass").value;
+      if (name.split(/\s+/).length < 2 || name.length < 5) { $("f-err").textContent = t("account.errName"); return; }
+      if (pass.length < 6) { $("f-err").textContent = t("account.errPassword"); return; }
+      $("f-err").textContent = ""; $("f-submit").disabled = true; $("f-submit").textContent = t("account.wait");
+      (mode === "login" ? Account.login(name, grade, pass) : Account.register(name, grade, pass))
+        .then(function () { location.replace("index.html"); })
+        .catch(function (err) {
+          var k = err && /^account\./.test(err.message) ? err.message : "account.errNet";
+          $("f-err").textContent = t(k); $("f-submit").disabled = false; paint();
+        });
+    };
+  })();
+  </script>
+</body>
+</html>

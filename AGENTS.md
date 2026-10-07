@@ -12,3 +12,4 @@
 - Math Islands lives as a plain HTML/CSS/JS static site in public/app/ (no frameworks, classic scripts) so it opens offline by double-clicking index.html; "/" just redirects there.
 - Installability is manifest-only (public/app/manifest.webmanifest); this template forbids adding PWA/service-worker build config.
 - "Ask Fox" is a rule-based, offline explainer (public/app/js/explainer.js) with no AI or network calls; question history is kept in localStorage.
+- Student accounts: public/app/js/account.js talks to Lovable Cloud via plain fetch (no SDK, classic script); login email is derived from normalized full name + grade, auto-confirm is on, and progress syncs to public.students.progress — keeps the static site framework-free while letting children continue on any device.
