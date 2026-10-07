@@ -18,3 +18,4 @@ Islands (one per step, each: mini-lesson, sandbox, treasure-hunt game, summary/k
 - [ ] Linear function y = kx + b (7)
 
 Final: run instructions, testing checklist, guide for adding an island.
+- [x] Профили учеников (ФИО, класс, пароль) с сохранением прогресса в облаке
