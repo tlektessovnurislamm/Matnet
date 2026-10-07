@@ -14,7 +14,7 @@ window.ISLAND_IMPL = window.ISLAND_IMPL || {};
     return h + "</svg>";
   }
   function tag(price, newPrice, p) {
-    return '<div class="tag">' + (newPrice != null ? "<s>" + price + "</s>" + newPrice : price) + " " + UI.esc(t_("tenge")).slice(0, 1) + (p ? "<small>−" + p + "%</small>" : "") + "</div>";
+    return '<div class="tag">' + (newPrice != null ? "<s>" + price + "</s>" + newPrice : price) + " " + UI.esc(t_("tenge")) + (p ? "<small>−" + p + "%</small>" : "") + "</div>";
   }
 
   /* ---------- a) lesson ---------- */

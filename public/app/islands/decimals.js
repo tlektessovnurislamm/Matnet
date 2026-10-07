@@ -42,7 +42,7 @@ window.ISLAND_IMPL = window.ISLAND_IMPL || {};
     if (step === 0) vis = strip(3, 10);
     else if (step === 1) vis = placeTable(235);
     else if (step === 2) vis = numline(70, 100, "lesson-pt");
-    else if (step === 3) vis = '<div class="row eq">' + col("0,50", "", "", "") .replace('<div class="line"></div>', "") + "<b>&gt;</b>" + '<div class="col-calc"><div>0,45</div></div></div>';
+    else if (step === 3) vis = '<div class="row eq"><div class="col-calc">0,50</div><b>&gt;</b><div class="col-calc">0,45</div></div>';
     else vis = col("1,25", "0,60", "+", "1,85");
     el.innerHTML = '<div class="card lesson"><div class="lesson-visual">' + vis + '</div><div class="prompt-row"><p class="lesson-text">' + UI.rich(steps[step]) + "</p>" + UI.speakBtn(steps[step]) +
       '</div><div class="dots" aria-hidden="true">' + steps.map(function (_, i) { return '<span class="' + (i === step ? "on" : "") + '"></span>'; }).join("") +
